@@ -8,4 +8,9 @@ class Cello_Home_Controller extends Controller
 	{
 		return View::make('cello::home');
 	}
+
+	public function get_help()
+	{
+		return "HELLPPPPP";
+	}
 }

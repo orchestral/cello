@@ -6,6 +6,6 @@ class Cello_Pages_Controller extends Controller
 
 	public function get_index()
 	{
-		return "Hello";
+		return "Hello from page";
 	}	
 }
