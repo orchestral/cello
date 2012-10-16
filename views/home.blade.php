@@ -5,7 +5,6 @@
 <div class="row">
 	<div class="span12 btn-group">
 		<a href="{{ handles('orchestra::resources/cello.pages') }}" class="btn btn-large"><i class="icon-file"></i> Pages</a>
-		<a href="{{ handles('orchestra::resources/cello.blogs') }}" class="btn btn-large"><i class="icon-book"></i> Blogs</a>
 		<a href="{{ handles('orchestra::resources/cello/help') }}" class="btn btn-large"><i class="icon-question-sign"></i> Helps</a>
 
 	</div>

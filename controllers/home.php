@@ -9,8 +9,8 @@ class Cello_Home_Controller extends Controller
 		return View::make('cello::home');
 	}
 
-	public function get_help()
+	public function get_help($page = 'index')
 	{
-		return "HELLPPPPP";
+		return View::make("cello::helps.{$page}");
 	}
 }

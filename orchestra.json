@@ -5,6 +5,6 @@
 	"url"         : "http://bundles.laravel.com/bundle/cello",
 	"version"     : "0.1.0",
 	"config"      : {
-		"configurable" : false
+		"handles" : "cello"
 	}
 }
