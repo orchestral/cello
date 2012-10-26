@@ -30,7 +30,7 @@ class Cello_Pages_Controller extends Controller
 			{
 				$column->value = function ($row) 
 				{
-					return '<strong>'.$row->title.'</strong>';
+					return '<strong><a href="'.handles('cello').$row->slug.'">'.$row->title.'</a></strong>';
 				};
 			});
 
@@ -125,13 +125,13 @@ class Cello_Pages_Controller extends Controller
 	public function post_view($id = null)
 	{
 		$input         = Input::all();
-		$slug          = ! empty($input['slug']) ? $input['slug'] : $input['title'];
+		$slug          = ! empty($input['slug']) ? $input['slug'] : '';
 		$input['slug'] = Str::slug($slug, '-');
 		$page_id       = $id ?: '0';
 
 		$rules         = array(
 			'title'   => 'required',
-			'slug'    => array('required', "unique:cello_pages,slug,{$page_id}"),
+			'slug'    => array("unique:cello_pages,slug,{$page_id}"),
 			'content' => 'required',
 			'status'  => 'required',
 		);
@@ -147,7 +147,6 @@ class Cello_Pages_Controller extends Controller
 		}
 
 
-		$slug = ! empty($input['slug']) ? $input['slug'] : $input['title'];
 		$type = 'update';
 		$page = Page::find($id);
 

@@ -1,6 +1,7 @@
 <?php
 
-Route::any('(:bundle)', function ()
+Route::any('(:bundle)/(:any?)', function ($page = '')
 {
-	return "Cello";
+	return Controller::call('Cello::cms@index',array($page));
 });
+
