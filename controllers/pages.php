@@ -3,7 +3,8 @@
 use Cello\Model\Page,
 	Orchestra\Form, 
 	Orchestra\Messages,  
-	Orchestra\Table;
+	Orchestra\Table,
+	\Config;
 
 class Cello_Pages_Controller extends Controller 
 {
@@ -30,7 +31,7 @@ class Cello_Pages_Controller extends Controller
 			{
 				$column->value = function ($row) 
 				{
-					return '<strong><a href="'.handles('cello').$row->slug.'">'.$row->title.'</a></strong>';
+					return '<strong>'.$row->title.'</strong>';
 				};
 			});
 
@@ -48,6 +49,7 @@ class Cello_Pages_Controller extends Controller
 				{
 					$html = array(
 						'<div class="btn-group">',
+						HTML::link((Config::get('cello::api.settings.remove_handle') == 'on'?URL::to($row->slug):handles('cello').$row->slug), 'View', array('class' => 'btn btn-mini')),
 						HTML::link(handles('orchestra::resources/cello.pages/view/'.$row->id), 'Edit', array('class' => 'btn btn-mini')),
 						HTML::link(handles('orchestra::resources/cello.pages/delete/'.$row->id), 'Delete', array('class' => 'btn btn-mini btn-danger')),
 						'</div>',
@@ -108,7 +110,7 @@ class Cello_Pages_Controller extends Controller
 					$control->options = Page::status_list();
 				});
 
-				$fieldset->control('input:text', handles('cello'), 'slug');
+				$fieldset->control('input:text', (Config::get('cello::api.settings.remove_handle') == 'on'?URL::to():handles('cello')), 'slug');
 			});
 		});
 
