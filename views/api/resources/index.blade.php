@@ -1,3 +1,5 @@
+@include(theme_path('cello::api.widgets.menu'))
+
 <div class="row-fluid">
 	
 	<div class="page-header">
