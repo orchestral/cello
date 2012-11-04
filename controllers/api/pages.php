@@ -13,7 +13,7 @@ class Cello_Api_Pages_Controller extends Controller
 
 	public function get_index()
 	{
-		$pages = Page::with('users')->where_not_null('id');
+		$pages = Page::with('users');
 
 		$pages = $pages->paginate(30);
 
