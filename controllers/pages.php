@@ -11,14 +11,9 @@ class Cello_Pages_Controller extends Controller
 	{
 		$page = Page::where_slug($slug)->first();
 		
-		if ($page === NULL) 
-		{
-			//page not found, 404.
-			return Response::error('404');
-		}
+		// page not found, 404.
+		if (is_null($page)) return Response::error('404');
 
-		$data = compact('page');
-		
-		return View::make('cello::page', $data);
+		return View::make('cello::page', compact('page'));
 	}
 }

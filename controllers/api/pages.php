@@ -51,7 +51,7 @@ class Cello_Api_Pages_Controller extends Controller
 					$html = array(
 						'<div class="btn-group">',
 						HTML::link(handles('cello::'.$row->slug), 'View', array('class' => 'btn btn-mini')),
-						HTML::link(handles('orchestra::resources/cello.pages/view/'.$row->id), 'Edit', array('class' => 'btn btn-mini')),
+						HTML::link(handles('orchestra::resources/cello.pages/view/'.$row->id), 'Edit', array('class' => 'btn btn-mini btn-warning')),
 						HTML::link(handles('orchestra::resources/cello.pages/delete/'.$row->id), 'Delete', array('class' => 'btn btn-mini btn-danger')),
 						'</div>',
 					);
