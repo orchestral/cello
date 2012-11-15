@@ -11,6 +11,11 @@ class Cello_Api_Pages_Controller extends Controller
 {
 	public $restful = true;
 
+	public function __construct()
+	{
+		$this->filter('before', 'cello::manage-pages');
+	}
+
 	public function get_index()
 	{
 		$pages = Page::with('users');
