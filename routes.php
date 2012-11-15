@@ -5,6 +5,8 @@
 | Cello Routes
 |--------------------------------------------------------------------------
 |
+| Define basic routing for Cello CMS.
+|
 */
 
 Route::any('(:bundle)/(:any)?', function ($page = '')
@@ -18,6 +20,15 @@ Route::any('(:bundle)', function ()
 	// from Orchestra Administrator Interface.
 	return Controller::call('cello::cms@home');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Cello Filters
+|--------------------------------------------------------------------------
+|
+| Define basic routing for Cello CMS.
+|
+*/
 
 Route::filter('cello::manage-pages', function ()
 {

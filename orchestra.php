@@ -42,6 +42,15 @@ Event::listen('orchestra.started: backend', function()
 	$asset->style('redactor', 'bundles/cello/vendor/redactor/css/redactor.css', array('bootstrap'));
 });
 
+/*
+|--------------------------------------------------------------------------
+| Hook Cello Configuration
+|--------------------------------------------------------------------------
+|
+| Allow Orchestra Extension Configuration page to configure Cello options.
+|
+*/
+
 Event::listen('orchestra.form: extension.cello', function ($config, $form)
 {
 	$form->extend(function ($form) use ($config)

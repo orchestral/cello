@@ -2,14 +2,21 @@
 
 use \Eloquent;
 
-class Page extends Eloquent 
-{
+class Page extends Eloquent {
+
 	const STATUS_DRAFT   = 'draft';
 	const STATUS_PUBLISH = 'publish';
 	const STATUS_PRIVATE = 'private';
 
 	public static $table = 'cello_pages';
 
+	/**
+	 * Available status for a page
+	 *
+	 * @static
+	 * @access public
+	 * @return array
+	 */
 	public static function status_list()
 	{
 		return array(
@@ -19,6 +26,12 @@ class Page extends Eloquent
 		);
 	}
 
+	/**
+	 * Belongs To `users` table
+	 *
+	 * @access public
+	 * @return Orchestra\Model\User
+	 */
 	public function users()
 	{
 		return $this->belongs_to('Orchestra\Model\User', 'user_id');

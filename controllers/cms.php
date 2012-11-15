@@ -3,8 +3,16 @@
 use Cello\Model\Page,
 	Orchestra\View;
 
-class Cello_Cms_Controller extends Controller
-{
+class Cello_Cms_Controller extends Controller {
+	
+	/**
+	 * Get Cello default homepage
+	 *
+	 * GET (:bundle)
+	 *
+	 * @access public
+	 * @return Response
+	 */
 	public function action_home()
 	{
 		$slug = Config::get('cello::cello.default_page');
@@ -12,6 +20,15 @@ class Cello_Cms_Controller extends Controller
 		return $this->action_page($slug);
 	}
 	
+	/**
+	 * Get a page from Cello
+	 *
+	 * GET (:bundle)/(:slug)
+	 * 
+	 * @access public
+	 * @param  string   $slug
+	 * @return Response
+	 */
 	public function action_page($slug = null)
 	{
 		$page = Page::where_slug($slug)->first();
