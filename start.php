@@ -23,4 +23,4 @@ Autoloader::namespaces(array(
 |
 */
 
-Hybrid\Acl::make('cello')->attach(Orchestra\Core::memory());
+Hybrid\Acl::make('cello')->attach(Orchestra::memory());

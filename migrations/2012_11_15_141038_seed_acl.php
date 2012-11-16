@@ -32,7 +32,7 @@ class Cello_Seed_Acl {
 			$acl->allow('Administrator', 'manage pages');
 		});
 
-		$cello->attach(Orchestra\Core::memory());
+		$cello->attach(Orchestra::memory());
 
 		return true;
 	}

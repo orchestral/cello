@@ -6,7 +6,6 @@
 	</div>
 
 	<p>
-		A developer centric, content management engine with a strong focus on exemplary documentation, 
-		community support, and framework.
+		A developer centric, content management engine.
 	</p>
 </div>
