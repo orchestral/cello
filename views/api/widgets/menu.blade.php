@@ -14,9 +14,9 @@
 				<li class="{{ URI::is('*/resources/cello.pages*') ? 'active' : '' }}">
 					{{ HTML::link(handles('orchestra::resources/cello.pages'), 'Pages') }}
 				</li>
-				<li class="{{ URI::is('*/resources/cello/help*') ? 'active' : '' }}">
+				<!--li class="{{ URI::is('*/resources/cello/help*') ? 'active' : '' }}">
 					{{ HTML::link(handles('orchestra::resources/cello/help'), 'Help') }}
-				</li>
+				</li-->
 			</ul>
 
 			<ul class="nav pull-right">

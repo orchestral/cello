@@ -36,6 +36,8 @@ class Cello_Cms_Controller extends Controller {
 		// page not found, 404.
 		if (is_null($page)) return Response::error('404');
 
+		View::share('_title_', $page->title);
+
 		return View::make("cello::page", compact('page', 'slug'));
 	}
 }

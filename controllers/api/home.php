@@ -16,6 +16,8 @@ class Cello_Api_Home_Controller extends Controller {
 	 */
 	public function get_index()
 	{
+		View::share('_title_', 'Cello CMS');
+		
 		return View::make('cello::api.home');
 	}
 

@@ -1,4 +1,4 @@
-@include(theme_path('cello::api.widgets.menu'))
+@include(locate('cello::api.widgets.menu'))
 
 <div class="hero-unit">
 	<div class="page-header">

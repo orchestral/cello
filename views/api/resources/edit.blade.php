@@ -1,11 +1,11 @@
-@include(theme_path('cello::api.widgets.menu'))
+@include(locate('cello::api.widgets.menu'))
 
 <div class="row-fluid">
 
 	<div class="page-header">
-		<h2>{{ $page_name }} 
-			@if ( ! empty($page_desc))
-			<small>{{ $page_desc ?: '' }}</small>
+		<h2>{{ isset($_title_) ? $_title_ : 'Cello CMS' }}
+			@if ( ! empty($_description_))
+			<small>{{ $_description_ ?: '' }}</small>
 			@endif
 		</h2>
 	</div>
@@ -13,9 +13,3 @@
 	{{ $form }}
 
 </div>
-
-<script>
-jQuery(function($) {
-	$('select').select2();
-});
-</script>

@@ -82,11 +82,11 @@ class Cello_Api_Pages_Controller extends Controller {
 		});
 
 		$data = array(
-			'eloquent'  => $pages,
-			'table'     => $table,
-			'page_name' => 'Cello CMS',
-			'page_desc' => 'List of Pages',
+			'eloquent' => $pages,
+			'table'    => $table,
 		);
+
+		View::share('_title_', __('cello::title.pages.list')->get());
 
 		return View::make('cello::api.resources.index', $data);
 	}
@@ -145,11 +145,11 @@ class Cello_Api_Pages_Controller extends Controller {
 		});
 
 		$data = array(
-			'eloquent'  => $page,
-			'form'      => $form,
-			'page_name' => 'Cello CMS',
-			'page_desc' => __("cello::title.pages.{$type}")->get(),
+			'eloquent' => $page,
+			'form'     => $form,
 		);
+
+		View::share('_title_', __("cello::title.pages.{$type}")->get());
 
 		return View::make('cello::api.resources.edit', $data);
 	}
