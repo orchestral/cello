@@ -35,7 +35,8 @@ class Cello_Api_Pages_Controller extends Controller {
 	 */
 	public function get_index()
 	{
-		$pages = Page::with('users');
+		$pages = Page::with('users')
+					->where_not_in('status', array(Page::STATUS_DELETED));
 
 		$pages = $pages->paginate(30);
 
@@ -63,6 +64,14 @@ class Cello_Api_Pages_Controller extends Controller {
 				$column->value = function ($row) 
 				{
 					return ( ! is_null($row->users) ? $row->users->fullname : '');
+				};
+			});
+
+			$table->column('status', function ($column)
+			{
+				$column->value = function ($row) 
+				{
+					return Str::title($row->status);
 				};
 			});
 
@@ -103,7 +112,9 @@ class Cello_Api_Pages_Controller extends Controller {
 	public function get_view($id = null)
 	{
 		$type = 'update';
-		$page = Page::find($id);
+		$page = Page::where('id', '=', $id)
+					->or_where('slug', '=', $id)
+					->first();
 
 		if (is_null($page))
 		{
@@ -172,7 +183,7 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		$rules         = array(
 			'title'   => 'required',
-			'slug'    => array("unique:cello_pages,slug,{$page_id}"),
+			'slug'    => array('required', 'min:2', 'match:/[a-z0-9\-]+/', "unique:cello_pages,slug,{$page_id}"),
 			'content' => 'required',
 			'status'  => 'required',
 		);
@@ -209,5 +220,45 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		return Redirect::to(handles('orchestra::resources/cello.pages'))
 			->with('message', $m->serialize());
+	}
+
+	/**
+	 * Delete a page
+	 *
+	 * GET (orchestra)/resources/cello.pages/delete/(:id)
+	 * 
+	 * @access public
+	 * @param  int      $id
+	 * @return Response
+	 */
+	public function get_delete($id = null)
+	{
+		$m    = new Messages;
+		$page = Page::find($id);
+
+		if (is_null($page))
+		{
+			$m->add('error', __('orchestra::response.db-404')->get());
+		}
+		else
+		{
+			try
+			{
+				DB::transaction(function () use ($page)
+				{
+					$page->status = Page::STATUS_DELETED;
+					$page->save();
+				});
+
+				$m->add('success', __('cello::response.pages.delete')->get());
+			}
+			catch (Exception $e)
+			{
+				$m->add('error', __('orchestra::response.db-failed')->get());
+			}
+		}
+
+		return Redirect::to(handles('orchestra::resources/cello.pages'))
+				->with('message', $m->serialize());
 	}
 }

@@ -7,6 +7,7 @@ class Page extends Eloquent {
 	const STATUS_DRAFT   = 'draft';
 	const STATUS_PUBLISH = 'publish';
 	const STATUS_PRIVATE = 'private';
+	const STATUS_DELETED = 'deleted';
 
 	public static $table = 'cello_pages';
 
