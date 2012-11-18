@@ -22,32 +22,14 @@
 <body>
 	<div class="row">
 		<div class="twelve columns">
-			<h1>{{ memorize('site.name') }} <small>{{ memorize('site.description') }}</small>
+			<h2>{{ memorize('site.name') }}<h2>
+			<p>{{ memorize('site.description') }}</p>
 			<hr />
 		</div>
 	</div>
 
 
-<div class="row">
+	@yield('content')
 
-	<div class="twelve columns" role="content">
-
-		<article>
-			@yield('content')
-		</article>
-
-	</div>
-</div>
-
-	<footer class="row">
-		<div class="twelve columns">
-			<hr />
-			<div class="row">
-				<div class="six columns">
-					<p>&copy; Copyright no one at all. Go to town.</p>
-				</div>
-			</div>
-		</div>
-	</footer>
 </body>
 </html>
