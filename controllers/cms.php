@@ -34,8 +34,19 @@ class Cello_Cms_Controller extends Controller {
 		$page = Page::where_slug($slug)->first();
 		
 		// page not found, 404.
-		if (is_null($page)) return Response::error('404');
-
+		switch (true)
+		{
+			case is_null($page) :
+				// pass through
+			case $page->status === Page::STATUS_DELETED :
+				// pass through
+			case ($page->status === Page::STATUS_DRAFT and is_null(Input::get('preview'))) :
+				// pass through
+			case ($page->status === Page::STATUS_PRIVATE and Auth::guest()) :
+				return Response::error('404');
+				break;
+		}
+		
 		View::share('_title_', $page->title);
 
 		return View::make("cello::page", compact('page', 'slug'));

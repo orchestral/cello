@@ -181,7 +181,7 @@ class Cello_Api_Pages_Controller extends Controller {
 		$input['slug'] = Str::slug($slug, '-');
 		$page_id       = $id ?: '0';
 
-		$rules         = array(
+		$rules = array(
 			'title'   => 'required',
 			'slug'    => array('required', 'min:2', 'match:/[a-z0-9\-]+/', "unique:cello_pages,slug,{$page_id}"),
 			'content' => 'required',
