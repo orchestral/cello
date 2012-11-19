@@ -11,12 +11,11 @@
 
 		<div id="cellonav" class="collapse nav-collapse">
 		  	<ul class="nav">
+		  		@if (Hybrid\Acl::make('cello')->can('manage-pages'))
 				<li class="{{ URI::is('*/resources/cello.pages*') ? 'active' : '' }}">
 					{{ HTML::link(handles('orchestra::resources/cello.pages'), 'Pages') }}
 				</li>
-				<!--li class="{{ URI::is('*/resources/cello/help*') ? 'active' : '' }}">
-					{{ HTML::link(handles('orchestra::resources/cello/help'), 'Help') }}
-				</li-->
+				@endif
 			</ul>
 
 			<ul class="nav pull-right">

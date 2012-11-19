@@ -46,9 +46,16 @@ class Cello_Cms_Controller extends Controller {
 				return Response::error('404');
 				break;
 		}
+
+		$data = compact('page', 'slug');
 		
 		View::share('_title_', $page->title);
 
-		return View::make("cello::page", compact('page', 'slug'));
+		if (View::exists("cello::page.{$slug}"))
+		{
+			return View::make("cello::page.{$slug}", $data);
+		}
+
+		return View::make("cello::page", $data);
 	}
 }
