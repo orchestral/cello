@@ -2,9 +2,9 @@
 
 use \Config,
 	Cello\Model\Page,
-	Orchestra\Form, 
+	Orchestra\Form,
 	Orchestra\HTML,
-	Orchestra\Messages,  
+	Orchestra\Messages,
 	Orchestra\Table,
 	Orchestra\View;
 
@@ -53,7 +53,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			// Add columns
 			$table->column('title', function ($column)
 			{
-				$column->value = function ($row) 
+				$column->value = function ($row)
 				{
 					return HTML::create('strong', $row->title);
 				};
@@ -61,7 +61,7 @@ class Cello_Api_Pages_Controller extends Controller {
 
 			$table->column('author', function ($column)
 			{
-				$column->value = function ($row) 
+				$column->value = function ($row)
 				{
 					return ( ! is_null($row->users) ? $row->users->fullname : '');
 				};
@@ -69,7 +69,7 @@ class Cello_Api_Pages_Controller extends Controller {
 
 			$table->column('status', function ($column)
 			{
-				$column->value = function ($row) 
+				$column->value = function ($row)
 				{
 					return Str::title($row->status);
 				};
@@ -79,10 +79,23 @@ class Cello_Api_Pages_Controller extends Controller {
 			{
 				$column->value = function ($row)
 				{
+					// @todo need to use language string for this.
 					$html = array(
-						HTML::link(handles('cello::'.$row->slug), 'View', array('class' => 'btn btn-mini')),
-						HTML::link(handles('orchestra::resources/cello.pages/view/'.$row->id), 'Edit', array('class' => 'btn btn-mini btn-warning')),
-						HTML::link(handles('orchestra::resources/cello.pages/delete/'.$row->id), 'Delete', array('class' => 'btn btn-mini btn-danger')),
+						HTML::link(
+							handles('cello::'.$row->slug),
+							'View',
+							array('class' => 'btn btn-mini')
+						),
+						HTML::link(
+							handles('orchestra::resources/cello.pages/view/'.$row->id),
+							'Edit',
+							array('class' => 'btn btn-mini btn-warning')
+						),
+						HTML::link(
+							handles('orchestra::resources/cello.pages/delete/'.$row->id),
+							'Delete',
+							array('class' => 'btn btn-mini btn-danger')
+						),
 					);
 
 					return HTML::create('div', HTML::raw(implode('', $html)), array('class' => 'btn-group'));
@@ -104,7 +117,7 @@ class Cello_Api_Pages_Controller extends Controller {
 	 * Show edit a page
 	 *
 	 * GET (orchestra)/resources/cello.pages/view/(:id)
-	 * 
+	 *
 	 * @access public
 	 * @param  int      $id
 	 * @return Response
@@ -130,23 +143,23 @@ class Cello_Api_Pages_Controller extends Controller {
 				'method' => 'POST',
 			));
 
-			$form->fieldset(function ($fieldset) 
+			$form->fieldset(function ($fieldset)
 			{
-				$fieldset->control('input:text', __('cello::label.title')->get(), function ($control)
+				$fieldset->control('input:text', 'title', function ($control)
 				{
-					$control->name = 'title';
-					$control->attr = array('class' => 'span12 !span4');
+					$control->label = __('cello::label.title')->get();
+					$control->attr  = array('class' => 'span12 !span4');
 				});
 
-				$fieldset->control('textarea', __('cello::label.content')->get(), function ($control)
+				$fieldset->control('textarea', 'content', function ($control)
 				{
-					$control->name = 'content';
-					$control->attr = array('class' => 'span12 !span4', 'role' => 'redactor'); 
+					$control->label = __('cello::label.content')->get();
+					$control->attr  = array('class' => 'span12 !span4', 'role' => 'redactor');
 				});
 
-				$fieldset->control('select', __('cello::label.status')->get(), function ($control)
+				$fieldset->control('select', 'status', function ($control)
 				{
-					$control->name    = 'status';
+					$control->label   = __('cello::label.status')->get();
 					$control->attr    = array('class' => 'span2 !span4');
 					$control->options = Page::status_list();
 				});
@@ -169,7 +182,7 @@ class Cello_Api_Pages_Controller extends Controller {
 	 * Update a page
 	 *
 	 * POST (orchestra)/resources/cello.pages/view/(:id)
-	 * 
+	 *
 	 * @access public
 	 * @param  int      $id
 	 * @return Response
@@ -183,7 +196,12 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		$rules = array(
 			'title'   => 'required',
-			'slug'    => array('required', 'min:2', 'match:/[a-z0-9\-]+/', "unique:cello_pages,slug,{$page_id}"),
+			'slug'    => array(
+				'required',
+				'min:2',
+				'match:/[a-z0-9\-]+/',
+				"unique:cello_pages,slug,{$page_id}",
+			),
 			'content' => 'required',
 			'status'  => 'required',
 		);
@@ -201,7 +219,7 @@ class Cello_Api_Pages_Controller extends Controller {
 		$type = 'update';
 		$page = Page::find($id);
 
-		if (is_null($page)) 
+		if (is_null($page))
 		{
 			$type = 'create';
 			$page = new Page(array(
@@ -226,7 +244,7 @@ class Cello_Api_Pages_Controller extends Controller {
 	 * Delete a page
 	 *
 	 * GET (orchestra)/resources/cello.pages/delete/(:id)
-	 * 
+	 *
 	 * @access public
 	 * @param  int      $id
 	 * @return Response

@@ -28,12 +28,12 @@ Orchestra\Extension\Config::map('cello', array(
 | Register Cello Assets for Backend
 |--------------------------------------------------------------------------
 |
-| Append all Cello required assets for Orchestra Administrator Interface usage 
-| mainly on Resources page.
+| Append all Cello required assets for Orchestra Administrator Interface
+| usage mainly on Resources page.
 |
 */
 
-Event::listen('orchestra.started: backend', function() 
+Event::listen('orchestra.started: backend', function()
 {
 	$asset = Asset::container('orchestra.backend');
 
@@ -57,7 +57,7 @@ Event::listen('orchestra.form: extension.cello', function ($config, $form)
 	{
 		$form->fieldset('URL Handling', function ($fieldset) use ($config)
 		{
-			$fieldset->control('select', 'default_page', function($control) use ($config) 
+			$fieldset->control('select', 'default_page', function($control) use ($config)
 			{
 				$control->label   = 'Default Page';
 				$control->options = function()

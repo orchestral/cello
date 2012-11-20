@@ -1,8 +1,8 @@
 Cello CMS for Orchestra Platform
 ===============
 
-Cello CMS is a Content Management System Extension built for Orchestra Platform. You can create and customize 
-your website easily with this awesome extension.
+Cello CMS is a Content Management System Extension built for Orchestra Platform.
+You can create and customize your website easily with this awesome extension.
 
 ## Installation
 
@@ -14,17 +14,18 @@ Melody can be downloaded directly from Artisan using the following commands:
 
 ## Setup
 
-To start using Cello CMS, activate the extension from Orchestra Administrator Interface.
+To start using Cello CMS, activate the extension from Orchestra Administrator
+Interface.
 
 ## Contributors
 
-* [Mior Muhammad Zaki](http://git.io/crynobone) 
+* [Mior Muhammad Zaki](http://git.io/crynobone)
 
 ## License
 
 	The MIT License
 
-	Copyright (C) 2012 by Mior Muhammad Zaki <http://git.io/crynobone> 
+	Copyright (C) 2012 by Mior Muhammad Zaki <http://git.io/crynobone>
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal

@@ -16,8 +16,8 @@ Route::any('(:bundle)/(:any)?', function ($page = '')
 
 Route::any('(:bundle)', function ()
 {
-	// get default page route from configuration, this is configurable 
-	// from Orchestra Administrator Interface.
+	// get default page route from configuration, this is configurable from
+	// Orchestra Administrator Interface.
 	return Controller::call('cello::cms@home');
 });
 
@@ -33,7 +33,7 @@ Route::any('(:bundle)', function ()
 Route::filter('cello::manage-pages', function ()
 {
 	// Redirect the user to login page if user is not logged in.
-	if ( ! Hybrid\Acl::make('cello')->can('manage-pages')) 
+	if ( ! Hybrid\Acl::make('cello')->can('manage-pages'))
 	{
 		$m = Orchestra\Messages::make('error', __('orchestra::response.credential.unauthorized'));
 
