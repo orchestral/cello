@@ -1,12 +1,12 @@
 <div class="navbar">
-  <div class="navbar-inner">
+	<div class="navbar-inner">
 
-  		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#cellonav">
+		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#cellonav">
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		
+
 		{{ HTML::link(handles('orchestra::resources/cello'), 'Cello CMS', array('class' => 'brand')) }}
 
 		<div id="cellonav" class="collapse nav-collapse">
