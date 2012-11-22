@@ -42,7 +42,7 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		$table = Table::of('cello.pages', function ($table) use ($pages)
 		{
-			$table->empty_message = __('orchestra::label.no-data')->get();
+			$table->empty_message = __('orchestra::label.no-data');
 
 			// Add HTML attributes option for the table.
 			$table->attr('class', 'table table-bordered table-striped');
@@ -77,7 +77,8 @@ class Cello_Api_Pages_Controller extends Controller {
 
 			$table->column('action', function ($column)
 			{
-				$column->value = function ($row)
+				$column->label_attr = array('class' => 'th-action');
+				$column->value      = function ($row)
 				{
 					// @todo need to use language string for this.
 					$html = array(
@@ -108,7 +109,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			'table'    => $table,
 		);
 
-		View::share('_title_', __('cello::title.pages.list')->get());
+		View::share('_title_', __('cello::title.pages.list'));
 
 		return View::make('cello::api.resources.index', $data);
 	}
@@ -147,19 +148,19 @@ class Cello_Api_Pages_Controller extends Controller {
 			{
 				$fieldset->control('input:text', 'title', function ($control)
 				{
-					$control->label = __('cello::label.title')->get();
+					$control->label = __('cello::label.title');
 					$control->attr  = array('class' => 'span12 !span4');
 				});
 
 				$fieldset->control('textarea', 'content', function ($control)
 				{
-					$control->label = __('cello::label.content')->get();
+					$control->label = __('cello::label.content');
 					$control->attr  = array('class' => 'span12 !span4', 'role' => 'redactor');
 				});
 
 				$fieldset->control('select', 'status', function ($control)
 				{
-					$control->label   = __('cello::label.status')->get();
+					$control->label   = __('cello::label.status');
 					$control->attr    = array('class' => 'span2 !span4');
 					$control->options = Page::status_list();
 				});
@@ -173,7 +174,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			'form'     => $form,
 		);
 
-		View::share('_title_', __("cello::title.pages.{$type}")->get());
+		View::share('_title_', __("cello::title.pages.{$type}"));
 
 		return View::make('cello::api.resources.edit', $data);
 	}
@@ -234,7 +235,9 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		$page->save();
 
-		$m->add('success', __("cello::response.pages.{$type}"));
+		$m->add('success', __("cello::response.pages.{$type}", array(
+			'name' => $page->title,
+		)));
 
 		return Redirect::to(handles('orchestra::resources/cello.pages'))
 			->with('message', $m->serialize());
@@ -256,23 +259,27 @@ class Cello_Api_Pages_Controller extends Controller {
 
 		if (is_null($page))
 		{
-			$m->add('error', __('orchestra::response.db-404')->get());
+			$m->add('error', __('orchestra::response.db-404'));
 		}
 		else
 		{
 			try
 			{
+				$m->add('success', __('cello::response.pages.delete', array(
+					'name' => $page->title,
+				)));
+
 				DB::transaction(function () use ($page)
 				{
 					$page->status = Page::STATUS_DELETED;
 					$page->save();
 				});
 
-				$m->add('success', __('cello::response.pages.delete')->get());
+				$m->add('success', __('cello::response.pages.delete'));
 			}
 			catch (Exception $e)
 			{
-				$m->add('error', __('orchestra::response.db-failed')->get());
+				$m->add('error', __('orchestra::response.db-failed'));
 			}
 		}
 
