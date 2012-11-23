@@ -1,5 +1,5 @@
 jQuery(function startCello($) { 'use strict';
-	var title, slug, sluggable, ev;
+	var title, slug, ev;
 
 	ev    = Javie.Events.make();
 	title = $('#title');
