@@ -265,9 +265,6 @@ class Cello_Api_Pages_Controller extends Controller {
 		{
 			try
 			{
-				$m->add('success', __('cello::response.pages.delete', array(
-					'name' => $page->title,
-				)));
 
 				DB::transaction(function () use ($page)
 				{
@@ -275,7 +272,9 @@ class Cello_Api_Pages_Controller extends Controller {
 					$page->save();
 				});
 
-				$m->add('success', __('cello::response.pages.delete'));
+				$m->add('success', __('cello::response.pages.delete', array(
+					'name' => $page->title,
+				))->get());
 			}
 			catch (Exception $e)
 			{

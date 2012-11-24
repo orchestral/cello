@@ -1,6 +1,6 @@
 <?php
 
-array(
+return array(
 	'pages' => array(
 		'create' => 'Page :name has been created',
 		'update' => 'Page :name has been updated',
