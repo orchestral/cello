@@ -274,7 +274,7 @@ class Cello_Api_Pages_Controller extends Controller {
 
 				$m->add('success', __('cello::response.pages.delete', array(
 					'name' => $page->title,
-				))->get());
+				)));
 			}
 			catch (Exception $e)
 			{
