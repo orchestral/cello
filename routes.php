@@ -33,7 +33,7 @@ Route::any('(:bundle)', function ()
 Route::filter('cello::manage-pages', function ()
 {
 	// Redirect the user to login page if user is not logged in.
-	if ( ! Hybrid\Acl::make('cello')->can('manage-pages'))
+	if ( ! Orchestra\Acl::make('cello')->can('manage-pages'))
 	{
 		$m = Orchestra\Messages::make('error', __('orchestra::response.credential.unauthorized'));
 

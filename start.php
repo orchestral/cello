@@ -5,7 +5,7 @@
 | Cello Library
 |--------------------------------------------------------------------------
 |
-| Map Cello Library using PSR-0 standard namespace. 
+| Map Cello Library using PSR-0 standard namespace.
 |
 */
 
@@ -23,4 +23,4 @@ Autoloader::namespaces(array(
 |
 */
 
-Hybrid\Acl::make('cello')->attach(Orchestra::memory());
+Orchestra\Acl::make('cello')->attach(Orchestra::memory());

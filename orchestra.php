@@ -63,7 +63,9 @@ Event::listen('orchestra.form: extension.cello', function ($config, $form)
 				$control->options = function()
 				{
 					$data  = array();
-					$pages = Cello\Model\Page::where_not_in('status', array(Cello\Model\Page::STATUS_DRAFT))->get();
+					$pages = Cello\Model\Page::where_not_in('status', array(
+						Cello\Model\Page::STATUS_DRAFT,
+					))->get();
 
 					foreach ($pages as $page)
 					{
