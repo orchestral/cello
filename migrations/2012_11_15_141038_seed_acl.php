@@ -24,7 +24,7 @@ class Cello_Seed_Acl {
 	 */
 	public function up()
 	{
-		$cello = Hybrid\Acl::register('cello', function($acl)
+		$cello = Orchestra\Acl::register('cello', function($acl)
 		{
 			$acl->add_action('manage pages');
 			$acl->add_role('Administrator');
@@ -44,7 +44,7 @@ class Cello_Seed_Acl {
 	 */
 	public function down()
 	{
-		
+
 	}
 
 }
