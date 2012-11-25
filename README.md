@@ -8,7 +8,7 @@ You can create and customize your website easily with this awesome extension.
 
 ### Installation with Laravel Artisan
 
-Melody can be downloaded directly from Artisan using the following commands:
+Cello CMS can be downloaded directly from Artisan using the following commands:
 
 	php artisan bundle:install cello
 
