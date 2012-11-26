@@ -10,9 +10,8 @@
 	$asset = Asset::container('cello.frontend');
 
 	$asset->style('foundation', 'bundles/cello/vendor/foundation/stylesheets/foundation.min.css');
-	$asset->style('cello', 'bundles/cello/css/cello-style.css', array('foundation'));
 
-	$asset->script('jquery', 'bundles/orchestra/jquery.min.js');
+	$asset->script('jquery', 'bundles/orchestra/js/jquery.min.js');
 	$asset->script('modernizr', 'bundles/cello/vendor/foundation/javascripts/modernizr.foundation.js'); ?>
 
 	{{ $asset->styles() }}
