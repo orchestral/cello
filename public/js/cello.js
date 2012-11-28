@@ -1,15 +1,9 @@
 jQuery(function startCello($) { 'use strict';
-	var title, slug, span, ev;
+	var title, slug, ev;
 
 	ev    = Javie.Events.make();
 	title = $('#title');
-	slug  = $('input[role="slug-editor"]:first').hide();
-	span  = $('span[role="slug"]:first').css('cursor', 'pointer');
-
-	span.on('click', function onClickSlugSpan (e) {
-		slug.show();
-		span.hide();
-	});
+	slug  = $('input[role="slug-editor"]:first');
 
 	ev.listen('cello.update: slug', function (val) {
 		if (_.isUndefined(val)) return ;

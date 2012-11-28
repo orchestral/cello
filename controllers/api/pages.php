@@ -170,16 +170,18 @@ class Cello_Api_Pages_Controller extends Controller {
 					$control->label = __('cello::label.slug');
 					$control->field = function ($row, $self)
 					{
-						$text[] = handles('cello::');
-						$text[] = HTML::create('span', $row->slug, array(
-							'class' => 'editable-slug', 
-							'role'  => 'slug',
+						$url = HTML::create('span', handles('cello::'), array(
+							'role'  => 'base-permalink',
+							'class' => 'add-on',
 						));
-						$text[] = Laravel\Form::text('slug', $row->slug, array(
+
+						$slug = Laravel\Form::text('slug', $row->slug, array(
 							'role' => 'slug-editor',
 						));
 
-						return implode('', $text);
+						return HTML::create('div', HTML::raw($url.$slug), array(
+							'class' => 'input-prepend'
+						));
 					};
 				});
 			});
