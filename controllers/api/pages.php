@@ -165,7 +165,18 @@ class Cello_Api_Pages_Controller extends Controller {
 					$control->options = Page::status_list();
 				});
 
-				$fieldset->control('input:text', handles('cello'), 'slug');
+				$fieldset->control('input:text', 'slug', function($control)
+				{
+					$control->label = __('cello::label.slug');
+					$control->field = function ($row, $self)
+					{
+						$text[] = handles('cello::');
+						$text[] = '<span class="editable-slug" role="slug">'.$row->slug.'</span>';
+						$text[] = Laravel\Form::text('slug', $row->slug, array('role' => 'slug-editor'));
+
+						return implode('', $text);
+					};
+				});
 			});
 		});
 

@@ -1,30 +1,38 @@
 jQuery(function startCello($) { 'use strict';
-	var title, slug, ev;
+	var title, slug, span, ev;
 
 	ev    = Javie.Events.make();
 	title = $('#title');
-	slug  = $('#slug');
+	slug  = $('input[role="slug-editor"]:first').hide();
+	span  = $('span[role="slug"]:first').css('cursor', 'pointer');
 
-	// @todo, ev.listener can be replace with ev.listen.
-	ev.listener('cello.update: slug', function (title, slug) {
-		var val;
+	span.on('click', function onClickSlugSpan (e) {
+		slug.show();
+		span.hide();
+	});
 
-		val = title.val();
-
+	ev.listen('cello.update: slug', function (val) {
 		if (_.isUndefined(val)) return ;
 
-		val = title.val().toLowerCase()
+		val = val.toLowerCase()
 				.replace(/[^\w ]+/g, '-')
 				.replace(/ +/g,'-');
 
 		slug.val(val);
+		span.text(val);
 	});
 
 	title.on('keyup', function titleOnKeyUp() {
-		ev.fire('cello.update: slug', [title, slug]);
+		ev.fire('cello.update: slug', [title.val()]);
+	});
+
+	slug.on('blur', function slugOnBlur(e) {
+		ev.fire('cello.update: slug', [slug.val()]);
 	});
 
 	$('*[role="redactor"]').redactor();
 
-	ev.fire('cello.update: slug', [title, slug]);
+	if (slug.val() === '') {
+		ev.fire('cello.update: slug', [title.val()]);
+	}
 });
