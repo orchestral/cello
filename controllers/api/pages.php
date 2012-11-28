@@ -84,17 +84,17 @@ class Cello_Api_Pages_Controller extends Controller {
 					$html = array(
 						HTML::link(
 							handles('cello::'.$row->slug),
-							'View',
+							__('orchestra::label.view'),
 							array('class' => 'btn btn-mini')
 						),
 						HTML::link(
 							handles('orchestra::resources/cello.pages/view/'.$row->id),
-							'Edit',
+							__('orchestra::label.edit'),
 							array('class' => 'btn btn-mini btn-warning')
 						),
 						HTML::link(
 							handles('orchestra::resources/cello.pages/delete/'.$row->id),
-							'Delete',
+							__('orchestra::label.delete'),
 							array('class' => 'btn btn-mini btn-danger')
 						),
 					);
@@ -171,8 +171,13 @@ class Cello_Api_Pages_Controller extends Controller {
 					$control->field = function ($row, $self)
 					{
 						$text[] = handles('cello::');
-						$text[] = '<span class="editable-slug" role="slug">'.$row->slug.'</span>';
-						$text[] = Laravel\Form::text('slug', $row->slug, array('role' => 'slug-editor'));
+						$text[] = HTML::create('span', $row->slug, array(
+							'class' => 'editable-slug', 
+							'role'  => 'slug',
+						));
+						$text[] = Laravel\Form::text('slug', $row->slug, array(
+							'role' => 'slug-editor',
+						));
 
 						return implode('', $text);
 					};
