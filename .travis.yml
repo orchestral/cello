@@ -10,6 +10,6 @@ before_install:
   - mv ./orchestral/cello ./laravel/bundles/cello
   - cd ./laravel
   - php artisan bundle:install orchestra
-  - echo "<?php return array('orchestra' => array('auto' => true, 'handles' => 'orchestra'), 'cello');" > ./laravel/application/bundles.php
+  - echo "<?php return array('orchestra' => array('auto' => true, 'handles' => 'orchestra'), 'cello');" > ./application/bundles.php
 
 script: "php artisan test cello"
