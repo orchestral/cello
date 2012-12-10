@@ -12,5 +12,4 @@ before_install:
   - php artisan bundle:install orchestra
   - echo "<?php return array('orchestra' => array('auto' => true, 'handles' => 'orchestra'), 'cello');" > ./laravel/application/bundles.php
 
-
 script: "php artisan test cello"
