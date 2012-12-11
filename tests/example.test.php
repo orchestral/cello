@@ -11,8 +11,8 @@ class ExampleTest extends Orchestra\Testable\TestCase {
 	{
 		parent::setUp();
 
+		Orchestra\Extension::detect();
 		Orchestra\Extension::activate('cello');
-		Orchestra\Extension::start('cello');
 	}
 
 	/**
