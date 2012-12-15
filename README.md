@@ -4,6 +4,8 @@ Cello CMS for Orchestra Platform
 Cello CMS is a Content Management System Extension built for Orchestra Platform.
 You can create and customize your website easily with this awesome extension.
 
+[![Build Status](https://secure.travis-ci.org/orchestral/cello.png?branch=master)](http://travis-ci.org/orchestral/cello)
+
 ## Installation
 
 ### Installation with Laravel Artisan
