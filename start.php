@@ -16,11 +16,8 @@ Autoloader::namespaces(array(
 
 /*
 |--------------------------------------------------------------------------
-| Define ACL
+| Start your engine
 |--------------------------------------------------------------------------
-|
-| Define Cello ACL to be used with Orchestra.
-|
 */
 
-Orchestra\Acl::make('cello')->attach(Orchestra::memory());
+Cello\Core::start();

@@ -1,6 +1,7 @@
 <?php namespace Cello\Model;
 
-use \Eloquent;
+use \Config,
+	\Eloquent;
 
 class Page extends Eloquent {
 
@@ -10,6 +11,34 @@ class Page extends Eloquent {
 	const STATUS_DELETED = 'deleted';
 
 	public static $table = 'cello_pages';
+
+	/**
+	 * Get page by id or slug
+	 *
+	 * @static
+	 * @access public
+	 * @param  mixed    $id
+	 * @return self
+	 */
+	public static function identity($id)
+	{
+		return static::where('id', '=', $id)
+				->or_where('slug', '=', $id);
+	}
+
+	/**
+	 * Get available page order by recent updated.
+	 *
+	 * @static
+	 * @access public
+	 * @return self
+	 */
+	public static function recent_available()
+	{
+		return static::with('users')
+				->where_not_in('status', array(static::STATUS_DELETED))
+				->order_by('updated_at', 'DESC');
+	}
 
 	/**
 	 * Available status for a page
@@ -35,7 +64,7 @@ class Page extends Eloquent {
 	 */
 	public function users()
 	{
-		return $this->belongs_to('Orchestra\Model\User', 'user_id');
+		return $this->belongs_to(Config::get('auth.model'), 'user_id');
 	}
 
 	/**
