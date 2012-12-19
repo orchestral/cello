@@ -24,12 +24,16 @@ class Cello_Seed_Acl {
 	 */
 	public function up()
 	{
-		$cello = Orchestra\Acl::register('cello', function($acl)
+		$role  = Orchestra\Model\Role::find(
+			Config::get('orchestra::orchestra.default_role', 1)
+		);
+
+		$cello = Orchestra\Acl::register('cello', function($acl) use ($role)
 		{
 			$acl->add_action('manage pages');
-			$acl->add_role('Administrator');
+			$acl->add_role($role->name);
 
-			$acl->allow('Administrator', 'manage pages');
+			$acl->allow($role->name, 'manage pages');
 		});
 
 		$cello->attach(Orchestra::memory());
