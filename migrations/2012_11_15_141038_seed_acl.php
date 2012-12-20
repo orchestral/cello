@@ -24,10 +24,7 @@ class Cello_Seed_Acl {
 	 */
 	public function up()
 	{
-		$role  = Orchestra\Model\Role::find(
-			Config::get('orchestra::orchestra.default_role', 1)
-		);
-
+		$role  = Orchestra\Model\Role::admin();
 		$cello = Orchestra\Acl::register('cello', function($acl) use ($role)
 		{
 			$acl->add_action('manage pages');
