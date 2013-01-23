@@ -13,7 +13,6 @@ jQuery(function startCello($) { 'use strict';
 				.replace(/ +/g,'-');
 
 		slug.val(val);
-		span.text(val);
 	});
 
 	title.on('keyup', function titleOnKeyUp() {
