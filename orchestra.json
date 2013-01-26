@@ -4,7 +4,7 @@
 	"author"      : "Mior Muhammad Zaki",
 	"url"         : "http://bundles.laravel.com/bundle/cello",
 	"repository"  : "https://github.com/orchestral/cello",
-	"version"     : "0.1.1",
+	"version"     : "0.1.2",
 	"config"      : {
 		"handles" : "cello"
 	}
