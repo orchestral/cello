@@ -50,9 +50,9 @@ class Page extends Eloquent {
 	public static function status_list()
 	{
 		return array(
-			static::STATUS_DRAFT   => __('cello::status.'.static::STATUS_DRAFT)->get(),
 			static::STATUS_PUBLISH => __('cello::status.'.static::STATUS_PUBLISH)->get(),
 			static::STATUS_PRIVATE => __('cello::status.'.static::STATUS_PRIVATE)->get(),
+			static::STATUS_DRAFT   => __('cello::status.'.static::STATUS_DRAFT)->get(),
 		);
 	}
 
