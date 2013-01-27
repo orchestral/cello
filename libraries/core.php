@@ -1,7 +1,9 @@
 <?php namespace Cello;
 
-use Orchestra\Core as O,
-	Orchestra\Acl;
+use \Asset,
+	\Event,
+	Orchestra\Acl,
+	Orchestra\Core as O;
 
 class Core {
 	
@@ -15,5 +17,16 @@ class Core {
 	public static function start()
 	{
 		Acl::make('cello')->attach(O::memory());
+
+		// Append all Cello required assets for Orchestra Administrator 
+		// Interface usage mainly on Resources page.
+		Event::listen('orchestra.started: backend', function()
+		{
+			$asset = Asset::container('orchestra.backend');
+
+			$asset->script('redactor', 'bundles/orchestra/vendor/redactor/redactor.js', array('jquery', 'bootstrap'));
+			$asset->script('cello', 'bundles/cello/js/cello.min.js', array('redactor'));
+			$asset->style('redactor', 'bundles/orchestra/vendor/redactor/css/redactor.css', array('bootstrap'));
+		});
 	}
 }
