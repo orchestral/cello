@@ -118,7 +118,7 @@ class Page {
 
 				$fieldset->control('select', 'status', function ($control)
 				{
-					$control->label(__('cello::label.status');
+					$control->label(__('cello::label.status'));
 					$control->markup(array('class' => 'span2 !span4'));
 					$control->options(P::status_list());
 				});
