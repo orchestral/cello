@@ -15,4 +15,4 @@ before_install:
   - php artisan bundle:install orchestra
   - echo "<?php return array('orchestra' => array('auto' => true, 'handles' => 'orchestra'), 'cello');" > ./application/bundles.php
 
-script: "php artisan test cello"
+script: "phpunit --coverage-text --configuration bundles/cello/phpunit.xml"
