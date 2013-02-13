@@ -24,7 +24,7 @@ class Page {
 			$table->empty_message = __('orchestra::label.no-data');
 
 			// Add HTML attributes option for the table.
-			$table->attr('class', 'table table-bordered table-striped');
+			$table->markup('class', 'table table-bordered table-striped');
 
 			// attach Model and set pagination option to true
 			$table->with($model, true);
@@ -32,32 +32,32 @@ class Page {
 			// Add columns
 			$table->column('title', function ($column)
 			{
-				$column->value = function ($row)
+				$column->value(function ($row)
 				{
 					return HTML::create('strong', $row->title);
-				};
+				});
 			});
 
 			$table->column('author', function ($column)
 			{
-				$column->value = function ($row)
+				$column->value(function ($row)
 				{
 					return ( ! is_null($row->users) ? $row->users->fullname : '');
-				};
+				});
 			});
 
 			$table->column('status', function ($column)
 			{
-				$column->value = function ($row)
+				$column->value(function ($row)
 				{
 					return Str::title($row->status);
-				};
+				});
 			});
 
 			$table->column('action', function ($column)
 			{
-				$column->label_attr = array('class' => 'th-action');
-				$column->value      = function ($row)
+				$column->label_markup(array('class' => 'th-action'));
+				$column->value(function ($row)
 				{
 					// @todo need to use language string for this.
 					$html = array(
@@ -79,7 +79,7 @@ class Page {
 					);
 
 					return HTML::create('div', HTML::raw(implode('', $html)), array('class' => 'btn-group'));
-				};
+				});
 			});
 		});
 	}
@@ -97,7 +97,7 @@ class Page {
 		return Form::of('cello.pages', function ($form) use ($model)
 		{
 			$form->row($model);
-			$form->attr(array(
+			$form->markup(array(
 				'action' => handles('orchestra::resources/cello.pages/view/'.$model->id),
 				'method' => 'POST',
 			));
@@ -106,27 +106,27 @@ class Page {
 			{
 				$fieldset->control('input:text', 'title', function ($control)
 				{
-					$control->label = __('cello::label.title');
-					$control->attr  = array('class' => 'span12 !span4');
+					$control->label(__('cello::label.title'));
+					$control->markup(array('class' => 'span12 !span4'));
 				});
 
 				$fieldset->control('textarea', 'content', function ($control)
 				{
-					$control->label = __('cello::label.content');
-					$control->attr  = array('class' => 'span12 !span4', 'role' => 'redactor');
+					$control->label(__('cello::label.content'));
+					$control->markup(array('class' => 'span12 !span4', 'role' => 'redactor'));
 				});
 
 				$fieldset->control('select', 'status', function ($control)
 				{
-					$control->label   = __('cello::label.status');
-					$control->attr    = array('class' => 'span2 !span4');
-					$control->options = P::status_list();
+					$control->label(__('cello::label.status');
+					$control->markup(array('class' => 'span2 !span4'));
+					$control->options(P::status_list());
 				});
 
 				$fieldset->control('input:text', 'slug', function($control)
 				{
-					$control->label = __('cello::label.slug');
-					$control->field = function ($row, $self)
+					$control->label(__('cello::label.slug'));
+					$control->field(function ($row, $self)
 					{
 						$url = HTML::create('span', handles('cello::'), array(
 							'role'  => 'base-permalink',
@@ -140,7 +140,7 @@ class Page {
 						return HTML::create('div', HTML::raw($url.$slug), array(
 							'class' => 'input-prepend'
 						));
-					};
+					});
 				});
 			});
 		});
