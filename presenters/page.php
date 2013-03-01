@@ -24,7 +24,7 @@ class Page {
 			$table->empty_message = __('orchestra::label.no-data');
 
 			// Add HTML attributes option for the table.
-			$table->markup('class', 'table table-bordered table-striped');
+			$table->attributes('class', 'table table-bordered table-striped');
 
 			// attach Model and set pagination option to true
 			$table->with($model, true);
@@ -56,7 +56,7 @@ class Page {
 
 			$table->column('action', function ($column)
 			{
-				$column->label_markup(array('class' => 'th-action'));
+				$column->label_attributes(array('class' => 'th-action'));
 				$column->value(function ($row)
 				{
 					// @todo need to use language string for this.
@@ -97,7 +97,7 @@ class Page {
 		return Form::of('cello.pages', function ($form) use ($model)
 		{
 			$form->row($model);
-			$form->markup(array(
+			$form->attributes(array(
 				'action' => handles('orchestra::resources/cello.pages/view/'.$model->id),
 				'method' => 'POST',
 			));
@@ -107,19 +107,19 @@ class Page {
 				$fieldset->control('input:text', 'title', function ($control)
 				{
 					$control->label(__('cello::label.title'));
-					$control->markup(array('class' => 'span12 !span4'));
+					$control->attributes(array('class' => 'span12 !span4'));
 				});
 
 				$fieldset->control('textarea', 'content', function ($control)
 				{
 					$control->label(__('cello::label.content'));
-					$control->markup(array('class' => 'span12 !span4', 'role' => 'redactor'));
+					$control->attributes(array('class' => 'span12 !span4', 'role' => 'redactor'));
 				});
 
 				$fieldset->control('select', 'status', function ($control)
 				{
 					$control->label(__('cello::label.status'));
-					$control->markup(array('class' => 'span2 !span4'));
+					$control->attributes(array('class' => 'span2 !span4'));
 					$control->options(P::status_list());
 				});
 
