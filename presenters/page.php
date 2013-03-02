@@ -32,9 +32,10 @@ class Page {
 			// Add columns
 			$table->column('title', function ($column)
 			{
+				$column->escape(false);
 				$column->value(function ($row)
 				{
-					return HTML::create('strong', $row->title);
+					return HTML::create('strong', e($row->title));
 				});
 			});
 
@@ -42,7 +43,7 @@ class Page {
 			{
 				$column->value(function ($row)
 				{
-					return ( ! is_null($row->users) ? $row->users->fullname : '');
+					return ( ! is_null($row->users) ? e($row->users->fullname) : '');
 				});
 			});
 
@@ -50,13 +51,14 @@ class Page {
 			{
 				$column->value(function ($row)
 				{
-					return Str::title($row->status);
+					return Str::title(e($row->status));
 				});
 			});
 
 			$table->column('action', function ($column)
 			{
 				$column->label_attributes(array('class' => 'th-action'));
+				$column->escape(false);
 				$column->value(function ($row)
 				{
 					// @todo need to use language string for this.
