@@ -1,6 +1,7 @@
 <?php
 
 use Cello\Model\Page,
+	Orchestra\Site,
 	Orchestra\View;
 
 class Cello_Cms_Controller extends Controller {
@@ -49,7 +50,7 @@ class Cello_Cms_Controller extends Controller {
 
 		$data = compact('page', 'slug');
 		
-		View::share('_title_', $page->title);
+		Site::set('title', $page->title);
 
 		if (View::exists("cello::page.{$slug}"))
 		{

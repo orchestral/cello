@@ -1,6 +1,7 @@
 <?php
 
-use Orchestra\View;
+use Orchestra\Site,
+	Orchestra\View;
 
 class Cello_Api_Home_Controller extends Controller {
 
@@ -21,7 +22,7 @@ class Cello_Api_Home_Controller extends Controller {
 	 */
 	public function get_index()
 	{
-		View::share('_title_', 'Cello CMS');
+		Site::set('title', 'Cello CMS');
 
 		return View::make('cello::api.home');
 	}
@@ -37,7 +38,8 @@ class Cello_Api_Home_Controller extends Controller {
 	 */
 	public function get_help($page = 'index')
 	{
-		View::share('_title_', 'Cello CMS Help');
+		Site::set('title', 'Cello CMS Help');
+		
 		return View::make("cello::api.helps.{$page}");
 	}
 }

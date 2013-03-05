@@ -3,6 +3,7 @@
 use \Config,
 	Cello\Model\Page,
 	Orchestra\Messages,
+	Orchestra\Site,
 	Orchestra\View;
 
 class Cello_Api_Pages_Controller extends Controller {
@@ -39,7 +40,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			'table'    => $table,
 		);
 
-		View::share('_title_', __('cello::title.pages.list'));
+		Site::set('title', __('cello::title.pages.list'));
 
 		return View::make('cello::api.resources.index', $data);
 	}
@@ -71,7 +72,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			'form'     => $form,
 		);
 
-		View::share('_title_', __("cello::title.pages.{$type}"));
+		Site::set('title', __("cello::title.pages.{$type}"));
 
 		return View::make('cello::api.resources.edit', $data);
 	}
