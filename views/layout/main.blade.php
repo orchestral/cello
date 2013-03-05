@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 
-	<title>{{ HTML::title(isset($_title_) ? $_title_ : '') }}</title>
+	<title>{{ HTML::title() }}</title>
 
 	<?php
 
