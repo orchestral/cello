@@ -10,8 +10,8 @@
 
 	$asset = Asset::container('cello.frontend');
 
-	$asset->style('foundation', 'bundles/orchestra/vendor/foundation/stylesheets/foundation.min.css');
-	$asset->script('foundation', 'bundles/orchestra/vendor/foundation/javascripts/foundation.min.js'); ?>
+	$asset->style('foundation', 'bundles/orchestra/vendor/foundation/css/foundation.min.css');
+	$asset->script('foundation', 'bundles/orchestra/vendor/foundation/js/foundation.min.js'); ?>
 
 	{{ $asset->styles() }}
 	{{ $asset->scripts() }}
@@ -20,7 +20,7 @@
 <body>
 	<div class="row">
 		<div class="twelve columns">
-			<h2>{{ memorize('site.name') }}<h2>
+			<h2>{{ memorize('site.name') }}</h2>
 			<p>{{ memorize('site.description') }}</p>
 			<hr />
 		</div>

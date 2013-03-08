@@ -1,28 +1,29 @@
-<div class="navbar">
-	<div class="navbar-inner">
+@section('cello::primary_menu')
+<ul class="nav">
+	@if (Orchestra\Acl::make('cello')->can('manage-pages'))
+	<li class="{{ URI::is('*/resources/cello.pages*') ? 'active' : '' }}">
+		{{ HTML::link(handles('orchestra::resources/cello.pages'), 'Pages') }}
+	</li>
+	@endif
+</ul>
+@endsection
 
-		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#cellonav">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+@section('cello::secondary_menu')
+<ul class="nav pull-right">
+	<li>
+		<a href="{{ handles('cello') }}" target="_blank"><i class="icon-home"></i> Website</a>
+	</li>
+</ul>
+@endsection
 
-		{{ HTML::link(handles('orchestra::resources/cello'), 'Cello CMS', array('class' => 'brand')) }}
+<?php
 
-		<div id="cellonav" class="collapse nav-collapse">
-		  	<ul class="nav">
-		  		@if (Orchestra\Acl::make('cello')->can('manage-pages'))
-				<li class="{{ URI::is('*/resources/cello.pages*') ? 'active' : '' }}">
-					{{ HTML::link(handles('orchestra::resources/cello.pages'), 'Pages') }}
-				</li>
-				@endif
-			</ul>
+$navbar = new Orchestra\Fluent(array(
+	'id'             => 'cello',
+	'title'          => 'Cello CMS',
+	'url'            => handles('orchestra::resources/cello'),
+	'primary_menu'   => Laravel\Section::yield('cello::primary_menu'),
+	'secondary_menu' => Laravel\Section::yield('cello::secondary_menu'),
+)); ?>
 
-			<ul class="nav pull-right">
-				<li>
-					<a href="{{ handles('cello') }}" target="_blank"><i class="icon-home"></i> Website</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
+{{ Orchestra\Decorator::navbar($navbar) }}
