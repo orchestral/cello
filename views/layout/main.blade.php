@@ -4,8 +4,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width" />
 
-	<title>{{ HTML::title() }}</title>
-
+	{{ HTML::title() }}
+	
 	<?php
 
 	$asset = Asset::container('cello.frontend');
