@@ -105,7 +105,7 @@ class Cello_Api_Pages_Controller extends Controller {
 			'status'  => 'required',
 		);
 
-		$m = new Messages;
+		$m = Messages::make();
 		$v = Validator::make($input, $rules);
 
 		if ($v->fails())
@@ -152,12 +152,12 @@ class Cello_Api_Pages_Controller extends Controller {
 	 */
 	public function get_delete($id = null)
 	{
-		$m    = new Messages;
+		$msg  = Messages::make();
 		$page = Page::find($id);
 
 		if (is_null($page))
 		{
-			$m->add('error', __('orchestra::response.db-404'));
+			$msg->add('error', __('orchestra::response.db-404'));
 		}
 		else
 		{
@@ -170,17 +170,17 @@ class Cello_Api_Pages_Controller extends Controller {
 					$page->save();
 				});
 
-				$m->add('success', __('cello::response.pages.delete', array(
+				$msg->add('success', __('cello::response.pages.delete', array(
 					'name' => $page->title,
 				)));
 			}
 			catch (Exception $e)
 			{
-				$m->add('error', __('orchestra::response.db-failed'));
+				$msg->add('error', __('orchestra::response.db-failed'));
 			}
 		}
 
 		return Redirect::to(handles('orchestra::resources/cello.pages'))
-				->with('message', $m->serialize());
+				->with('message', $msg->serialize());
 	}
 }
