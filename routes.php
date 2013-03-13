@@ -35,9 +35,10 @@ Route::filter('cello::manage-pages', function ()
 	// Redirect the user to login page if user is not logged in.
 	if ( ! Orchestra\Acl::make('cello')->can('manage-pages'))
 	{
-		$m = Orchestra\Messages::make('error', __('orchestra::response.credential.unauthorized'));
+		$msg = Orchestra\Messages::make();
+		$msg->add('error', __('orchestra::response.credential.unauthorized'));
+		$msg->save();
 
-		return Redirect::to(handles('orchestra::resources/cello'))
-				->with('message', $m->serialize());
+		return Redirect::to(handles('orchestra::resources/cello'));
 	}
 });
