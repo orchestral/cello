@@ -50,7 +50,7 @@ class Cello_Cms_Controller extends Controller {
 
 		$data = compact('page', 'slug');
 		
-		Site::set('title', $page->title);
+		if ( ! URI::is('/')) Site::set('title', $page->title);
 
 		if (View::exists("cello::page.{$slug}"))
 		{
